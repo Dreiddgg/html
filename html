@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+    <link rel="stylesheet" type="text/css" href="check.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Details Form</h1>
+        <form id="userForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="middleName">Middle Name:</label>
+            <input type="text" id="middleName" name="middleName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="birthday">Birthday (MM/DD/YYYY):</label>
+            <input type="date" id="birthday" name="birthday" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <button type="button" id="clearButton">Clear</button>
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const userForm = document.getElementById('userForm');
+        const clearButton = document.getElementById('clearButton');
+
+        clearButton.addEventListener('click', () => {
+            userForm.reset();
+        });
+
+        userForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(userForm);
+            const userData = {};
+
+            formData.forEach((value, key) => {
+                userData[key] = value;
+            });
+
+            alert(JSON.stringify(userData, null, 2));
+        });
+    </script>
+</body>
+</html>
